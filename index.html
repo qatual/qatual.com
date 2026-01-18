@@ -92,20 +92,6 @@ html, body {
   margin-bottom: 8px;
 }
 
-.links a {
-  display: block;
-  font-size: 1.2rem;
-  margin: 6px 0;
-  text-decoration: none;
-  color: #60a2ff;
-  transition: ease 0.3s;
-}
-
-.links a:hover {
-  transition: ease 0.3s;
-  color: #f2ff00;
-}
-
 #overlay {
   position: fixed;
   top: 0;
@@ -130,6 +116,39 @@ hr {
   background: #cccccc00;
   margin: 0.8em 0;
 }
+a {
+    background-color: rgba(34, 34, 34, 0.178);
+    padding: 10px;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.140);
+    color: white;
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+        transition: all 0.3s ease;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+a:hover {
+    border-color: rgba(255, 255, 255, 0.78);
+    color: #45ffb2;
+}
+
+a:hover::after {
+    opacity: 0.18;  
+}
+
 
   </style>
 </head>
@@ -172,7 +191,7 @@ hr {
     const audio = document.getElementById('bg-audio');
 
     overlay.addEventListener('click', () => {
-      audio.play().catch(e => console.log('the browser wont lemme play the song on load :('));
+      audio.play().catch(e => console.log('pov: 9713 soneseta drive lol'));
       overlay.style.opacity = '0';
       setTimeout(() => overlay.style.display = 'none', 1000);
       mainContent.style.opacity = '1';
