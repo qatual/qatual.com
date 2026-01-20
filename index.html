@@ -1,201 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rth0523</title>
-  <link rel="icon" href="https://qatual.com/pfp.png" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Parkinsans&display=swap" rel="stylesheet">
-  <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Parkinsans';
-}
-.element {
-  cursor: url('cursor.cur'), 
-  url('cursor.cur') 16 16, 
-  pointer;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>rth0523</title>
+<meta name="description" content="hi, i'm roman, a teenage frontend developer.">
+<meta name="theme-color" content="#1b0000">
+
+<link rel="icon" href="/assets/pfp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* { box-sizing:border-box; font-family:'Parkinsans', sans-serif; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:#1b0000; background-image: linear-gradient(rgba(124,187,250,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(122,189,255,0.03) 1px, transparent 1px); background-size:30px 30px; color:#fff; }
+
+nav {
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 20px;
+  border-radius:999px;
+  background:linear-gradient(145deg, rgba(50,0,0,0.85), rgba(20,0,0,0.85));
+  border:1px solid rgba(255,90,90,0.35);
+  backdrop-filter:blur(14px);
+  box-shadow:0 0 30px rgba(255,0,0,0.3);
+  z-index:50;
 }
 
-::-webkit-scrollbar {
-	width: 12px;
-	height: 0px;
+nav a {
+  padding:10px 16px;
+  border-radius:999px;
+  color:#ffdede;
+  text-decoration:none;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:all 0.25s ease;
+  position:relative;
 }
 
-::-webkit-scrollbar-track {
-	background: #45ffb2;
-	border-radius: 10px;
+nav a:hover {
+  background:rgba(255,80,80,0.18);
+  color:#fff;
+  box-shadow:0 0 14px rgba(255,60,60,0.4);
 }
 
-::-webkit-scrollbar-thumb {
-	background-color: #45ffb2;
-	border-radius: 10px;
-	border: 3px solid #3e9370;
+.divider {
+  width:1px;
+  height:18px;
+  background:rgba(255,80,80,0.4);
+}
+section { min-height:100vh; padding:140px 8vw 120px; display:flex; justify-content:center; align-items:center; position:relative; }
+section::after { content:""; position:absolute; bottom:0; width:70%; height:1px; background:linear-gradient(90deg, transparent, rgba(255,80,80,0.4), transparent); }
+
+#home { background:radial-gradient(circle at top, rgba(255,60,60,0.15), transparent 60%); }
+#links { background:radial-gradient(circle at center, rgba(255,60,60,0.12), transparent 65%); }
+#about { background:radial-gradient(circle at bottom, rgba(255,60,60,0.18), transparent 60%); }
+
+.card {
+  background:rgba(15,0,0,0.65); border:1px solid rgba(255,90,90,0.35); border-radius:28px; padding:38px;
+  box-shadow:0 0 35px rgba(255,0,0,0.35), inset 0 0 28px rgba(255,80,80,0.12); backdrop-filter:blur(14px);
+  text-align:center; transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover { transform:translateY(-6px); box-shadow:0 0 42px rgba(255,0,0,0.45); }
+
+.profile img {
+  width:210px; height:210px; border-radius:50%; border:4px solid #ff4d4d;
+  box-shadow:0 0 32px #ff4d4d,0 0 65px rgba(255,0,0,0.6);
+}
+@keyframes rainbowMove { from { background-position:0% 50%; } to { background-position:100% 50%; } }
+
+.contact-grid { width:100%; max-width:1000px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.6rem; }
+.contact-card { padding:1.9rem; background:rgba(30,10,10,0.65); border:1px solid rgba(255,90,90,0.3); border-radius:20px; text-decoration:none; display:flex; flex-direction:column; gap:0.7rem; transition:all 0.35s ease; }
+.contact-card:hover { background:rgba(50,20,20,0.75); border-color:rgba(255,120,120,0.5); transform:translateY(-6px); box-shadow:0 0 26px rgba(255,80,80,0.45); }
+.contact-label { font-size:0.75rem; letter-spacing:1.3px; color:rgba(255,160,160,0.55); text-transform:uppercase; }
+.contact-value { color:#ffecec; font-weight:600; display:flex; align-items:center; gap:12px; font-size:1.15rem; }
+
+.about { max-width:520px; }
+.about h2 { color:#ff6b6b; font-size:2.1rem; margin-bottom:18px; }
+.about p { line-height:1.7; color:#f5dede; font-size:1.06rem; }
+
+.fullscreen { position:fixed; inset:0; background:rgba(27,0,0,0.95); display:flex; justify-content:center; align-items:center; font-size:2rem; cursor:pointer; z-index:100; transition:opacity 0.5s; }
+.hide { opacity:0; pointer-events:none; }
+
+@media (max-width:600px) { .rainbow-text { font-size:2.6rem; } nav a { padding:8px 16px; } }
+.intro-text {
+  margin-top:20px;
+  font-size:2.6rem;
+  font-weight:600;
+  white-space:nowrap;
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background-color: #45ffb2;
+.white-text {
+  color:#ffffff;
 }
 
-::selection {
-	background-color: #ffffff;
-	color: rgb(0, 0, 0);
+.rainbow-text {
+  font-weight:800;
+  background: linear-gradient(270deg, #ff3b3b, #ffb347, #ffe259, #7cff7c, #6ec6ff, #b388ff, #ff3b3b);
+  background-size: 1200% 1200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowMove 12s linear infinite;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: rgba(0,0,0,0.60);
+@keyframes rainbowMove {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
 }
-
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: rgb(255, 255, 255);
-  opacity: 0;
-  transition: opacity 1.5s ease;
-  max-width: 100%; 
-}
-
-.profile-pic-container {
-  width: 130px; 
-  height: 130px;
-  margin: 0 auto 20px auto;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile-pic-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.content h1 {
-  font-size: 2rem; 
-  margin-bottom: 8px;
-}
-
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem; 
-  cursor: pointer;
-  z-index: 10;
-  user-select: none;
-  transition: opacity 1s ease;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background: #cccccc00;
-  margin: 0.8em 0;
-}
-a {
-    background-color: rgba(34, 34, 34, 0.178);
-    padding: 10px;
-    text-decoration: none;
-    border: 2px solid rgba(255, 255, 255, 0.140);
-    color: white;
-    display: inline-block;
-    margin: 5px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;
-        transition: all 0.3s ease;
-}
-
-a::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: black;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-a:hover {
-    border-color: rgba(255, 255, 255, 0.78);
-    color: #45ffb2;
-}
-
-a:hover::after {
-    opacity: 0.18;  
-}
-
-
-  </style>
+.hide { opacity:0; pointer-events:none; }
+.notification { position:fixed; bottom:30px; left:30px; background:rgba(20,0,0,0.9); border:1px solid rgba(255,80,80,0.4); border-radius:20px; backdrop-filter:blur(14px); color:#fff; display:flex; align-items:center; gap:12px; padding:18px 22px; box-shadow:0 0 35px rgba(255,0,0,0.4); opacity:0; transform:translateY(50px); transition:all 0.5s ease; z-index:200; max-width:480px; }
+.notification.show { opacity:1; transform:translateY(0); }
+.notification img { width:60px; height:60px; border-radius:14px; }
+.notif-text { flex:1; font-size:1rem; display:flex; flex-direction:column; }
+.notif-footer { font-size:0.60rem; color:#ffbcbc; margin-top:6px; }
+.notif-artist { font-size:0.85rem; color:#ffdede; margin-top:2px; }
+.notif-close { background:none; border:none; color:#fff; font-size:1.3rem; cursor:pointer; align-self:flex-start; }
+@media (max-width:600px) { .rainbow-text { font-size:2.6rem; } nav a { padding:8px 16px; } .notification { max-width:90%; padding:14px 16px; gap:10px; } .notification img { width:50px; height:50px; } }
+</style>
 </head>
 <body>
-  <video id="bg-video" autoplay muted loop playsinline>
-    <source src="https://pomf2.lain.la/f/n8r802l.mp4" type="video/mp4">
-    boiii use a better browser
-  </video>
 
-  <div class="content" id="mainContent">
-    <div class="profile-pic-container">
-      <img src="https://qatual.com/pfp.png" alt="little logi boiiii">
-    </div>
-    <h1>hi, i'm roman.</h1>
-<hr>
+<div class="fullscreen" id="splash">click me to enter</div>
 
-    <h2>projects</h2>
-    <div class="links">
-      <a href="https://szvy.one" target="_blank">szvy central</a>
-      <a href="https://endis.rest" target="_blank">endis</a>
-    </div>
-
-    <hr>
-
-    <h2>socials</h2>
-    <div class="links">
-      <a href="https://open.spotify.com/artist/516gP5eH99QjDshJFnbik2?si=f1hpBHiuRpSbo1SQT4O1rg" target="_blank">spotify</a>
-      <a href="https://discord.gg/szvy" target="_blank">discord</a>
-      <a href="https://github.com/qatual" target="_blank">github</a>
-      <a href="mailto:qatual@qatual.com" target="_blank">mail</a>
+<nav>
+  <a href="#h"><i class="fas fa-home"></i> home</a>
+  <span class="divider"></span>
+  <a href="#a"><i class="fas fa-user"></i> about</a>
+  <span class="divider"></span>
+  <a href="#p"><i class="fas fa-code"></i> projects</a>
+  <span class="divider"></span>
+  <a href="#c"><i class="fas fa-envelope"></i> contact</a>
+</nav>
+<section id="h">
+  <div class="card profile">
+    <img src="/assets/pfp.png">
+    <div class="intro-text">
+      <span class="white-text">hi, i'm </span><span class="rainbow-text">rth0523</span>
     </div>
   </div>
+</section>
 
-  <div id="overlay">click to enter</div>
-  <audio id="bg-audio" src="https://qatual.com/music/voices.wav" loop></audio>
+<section id="a">
+  <div class="card about">
+    <h2>about me</h2>
+    <p>
+      im roman, im a teenage developer who mainly focuses on frontend development.
+      i know python, javascript, html, css, and astro. i like to produce aswell but i suck lol.
+    </p>
+  </div>
+</section>
 
-  <script>
-    const overlay = document.getElementById('overlay');
-    const mainContent = document.getElementById('mainContent');
-    const audio = document.getElementById('bg-audio');
+<section id="p">
+  <div class="contact-grid">
+    <a class="contact-card" href="https://solocentral.org" target="_blank">
+      <div class="contact-label">games</div>
+      <div class="contact-value"><i class="fas fa-gamepad"></i> solo central V8</div>
+    </a>
+    <a class="contact-card" href="https://szvy.one" target="_blank">
+      <div class="contact-label">games</div>
+      <div class="contact-value"><i class="fas fa-gamepad"></i> szvy central V3</div>
+    </a>
+    <a class="contact-card" href="https://gallium.buzz" target="_blank">
+      <div class="contact-label">music</div>
+      <div class="contact-value"><i class="fas fa-headphones"></i> gallium</div>
+    </a>
+  </div>
+</section>
 
-    overlay.addEventListener('click', () => {
-      audio.play().catch(e => console.log('pov: 9713 soneseta drive lol'));
-      overlay.style.opacity = '0';
-      setTimeout(() => overlay.style.display = 'none', 1000);
-      mainContent.style.opacity = '1';
-    });
-  </script>
+<section id="c">
+  <div class="contact-grid">
+    <a class="contact-card" href="https://github.com/qatual" target="_blank">
+      <div class="contact-label">github</div>
+      <div class="contact-value"><i class="fab fa-github"></i>@qatual</div>
+    </a>
+    <a class="contact-card" href="https://discord.com/users/649010603083431950" target="_blank">
+      <div class="contact-label">discord</div>
+      <div class="contact-value"><i class="fab fa-discord"></i>@prodrth</div>
+    </a>   
+     <a class="contact-card" href="mailto:qatual@qatual.com" target="_blank">
+      <div class="contact-label">E-Mail</div>
+      <div class="contact-value"><i class="fas fa-envelope"></i>qatual@qatual.com</div>
+    </a>
+  </div>
+</section>
+
+<audio id="bg-audio" src="https://gallium.buzz/ae0rjgi/Madvillain/Operation Lifesaver.mp3" loop></audio>
+<div id="song-notif" class="notification">
+  <div class="notif-text">
+    <strong>Song:</strong> Operation Lifesaver
+    <div class="notif-artist">Artist: Madvillain</div>
+    <div class="notif-footer">powered by gallium</div>
+  </div>
+  <img src="https://gallium.buzz/ae0rjgi/Madvillain/Madvillainy.jpg" alt="cover">
+  <button class="notif-close">&times;</button>
+</div>
+<script>
+const splash = document.getElementById('splash');
+const audio = document.getElementById('bg-audio');
+const notif = document.getElementById('song-notif');
+const notifClose = document.querySelector('.notif-close');
+
+splash.addEventListener('click', () => {
+  audio.play().catch(() => {});
+  splash.classList.add('hide');
+  setTimeout(() => {
+    notif.classList.add('show');
+  }, 500);
+});
+
+notifClose.addEventListener('click', () => {
+  notif.classList.remove('show');
+});
+
+const titles = [
+  "r",
+  "rt",
+  "rth",
+  "rth0",
+  "rth05",
+  "rth052",
+  "rth0523",
+  "rth052",
+  "rth05",
+  "rth0",
+  "rth",
+  "rt",
+];
+
+let index = 0;
+
+function animateTabTitle() {
+  const current = titles[index];
+  document.title = current;
+
+  index = (index + 1) % titles.length;
+  setTimeout(animateTabTitle, 300); 
+}
+
+animateTabTitle();
+</script>
+
+
 </body>
 </html>
