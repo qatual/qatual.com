@@ -24,8 +24,6 @@
     script.textContent = s;
     document.documentElement.appendChild(script);
   });
-
-  // Anti-debug (comment out while testing if needed)
   setInterval(() => { debugger; }, 500);
   console.clear = () => {};
 })();
